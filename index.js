@@ -1,9 +1,11 @@
 const express = require('express');
+const { homePage } = require('./home');
+
 
 const app = express();
 
 app.get("", (req, res) => {
-  res.send("<h1>Hello World!</h1>")
+  res.send(homePage)
 });
 
 app.get("/about", (req, res) => {
