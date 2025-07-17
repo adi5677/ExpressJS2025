@@ -1,15 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page</title>
+  <meta charset="UTF-8">
+  <title>About Us - My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f9f9f9, #e0f7ff);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    nav {
+      background-color: #0056b3;
+      display: flex;
+      justify-content: center;
+      padding: 12px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 18px;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffc107;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 0.7s ease-in;
+    }
+
+    .container h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #007bff;
+      text-align: center;
+    }
+
+    .container p {
+      font-size: 18px;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .highlight-box {
+      flex: 1 1 45%;
+      background-color: #f1f9ff;
+      margin: 10px;
+      padding: 20px;
+      border-left: 5px solid #007bff;
+      border-radius: 8px;
+    }
+
+    .highlight-box h4 {
+      margin-bottom: 10px;
+      color: #007bff;
+    }
+
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .highlight-box {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <h1>About Page</h1>
-    <p>This is the about page of our application.</p>
-    <a href="/">Go to Home Page</a>
-    
+  <header>
+    <h1>About Us</h1>
+    <p>Learn more about who we are and what we do</p>
+  </header>
+
+  <nav>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/about"><i class="fas fa-info-circle"></i> About</a>
+    <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+    <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2>Our Story</h2>
+    <p>
+      Welcome to <strong>My Website</strong> — your go-to platform for modern, simple, and effective web experiences.
+      We started with a single idea: to make web solutions accessible and beautiful. Whether you're browsing, learning,
+      or collaborating, our goal is to provide smooth navigation and clear information with elegant design.
+    </p>
+    <p>
+      Our team combines passion and professionalism to build websites that users love. We're committed to constant improvement,
+      clean code, and thoughtful design.
+    </p>
+
+    <div class="highlights">
+      <div class="highlight-box">
+        <h4><i class="fas fa-lightbulb"></i> Creative Design</h4>
+        <p>We prioritize sleek, minimal interfaces that are both functional and beautiful.</p>
+      </div>
+      <div class="highlight-box">
+        <h4><i class="fas fa-users"></i> User-Centered</h4>
+        <p>Everything we do is focused on delivering the best experience for our users.</p>
+      </div>
+      <div class="highlight-box">
+        <h4><i class="fas fa-code"></i> Clean Code</h4>
+        <p>Built with best practices to ensure scalability, maintainability, and speed.</p>
+      </div>
+      <div class="highlight-box">
+        <h4><i class="fas fa-heart"></i> Passion Driven</h4>
+        <p>We love what we do — and it shows in the care we put into every detail.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
