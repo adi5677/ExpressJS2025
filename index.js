@@ -1,11 +1,12 @@
 const express = require('express');
-const { homePage } = require('./home');
+const { homePage } = require('./home1');
+const { default: home } = require('./pages/home');
 
 
 const app = express();
 
 app.get("", (req, res) => {
-  res.send(homePage)
+  res.send(home)
 });
 
 app.get("/about", (req, res) => {
