@@ -4,6 +4,12 @@ import { fileURLToPath } from 'url';
 const abspath = path.resolve('view')
 const app = express();
 
+//Using Middleware
+app.use((req, res, next) =>{
+    console.log("user Accessing " +req.url + "Page");
+    next();
+})
+
 app.get('/', (req, res) => {
     res.sendFile(abspath + "/home.html")
     })
