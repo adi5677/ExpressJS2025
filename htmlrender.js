@@ -5,36 +5,50 @@ const abspath = path.resolve('view')
 const app = express();
 
 //Using Middleware
-app.use((req, res, next) =>{
-    console.log("user Accessing " +req.url + "Page");
-    next();
-})
+// app.use((req, res, next) =>{
+//     console.log("user Accessing " +req.url + "Page");
+//     next();
+// })
 
 
 //Age Check Using Middleware
-function ageCheck(req, res, next) {
-    if (req.query.age || req.query.age < 18) {
-        console.log("User is " + req.query.age + " years old");
-        next();
-        } else {
-            res.send("You are not allowed to access this page");
-    }
-}
-app.use('/user', ageCheck);
+// function ageCheck(req, res, next) {
+//     if (req.query.age || req.query.age < 18) {
+//         console.log("User is " + req.query.age + " years old");
+//         next();
+//         } else {
+//             res.send("You are not allowed to access this page");
+//     }
+// }
+// app.use('/user', ageCheck);
 
 
 //IP check using middleware
 
-function ipCheck(req, res, next) {
-    if (req.ip === '::1' || req.ip === '127.0.0.1') {
-        console.log("User is accessing from " + req.ip);
-        next();
-        } else {
-            res.send("You are not allowed to access this page");
-            }
-}
-app.use('/user', ipCheck);
+// function ipCheck(req, res, next) {
+//     if (req.ip === '::1' || req.ip === '127.0.0.1') {
+//         console.log("User is accessing from " + req.ip);
+//         next();
+//         } else {
+//             res.send("You are not allowed to access this page");
+//             }
+// }
+// app.use('/user', ipCheck);
 
+//Check Age and IP using middleware
+
+function chaeckAgeRouteMiddleware(req, res, next) {
+    console.log(req.query.age);
+
+    
+    if(!req.query.age || req.query.age < 18) {
+        res.send("You are not allowed to access this page");
+    }
+    else {
+        next();
+    }
+
+}
 
 app.get('/', (req, res) => {
     res.sendFile(abspath + "/home.html")
@@ -52,7 +66,7 @@ app.get('/about', (req, res) => {
     res.sendFile(abspath + "/about.html")
     })
 
-app.get('/contact', (req, res) => {
+app.get('/contact', chaeckAgeRouteMiddleware, (req, res) => {
     res.sendFile(abspath + "/contact.html")
     })
 
