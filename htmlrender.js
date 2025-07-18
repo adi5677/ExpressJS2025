@@ -50,6 +50,11 @@ function chaeckAgeRouteMiddleware(req, res, next) {
 
 }
 
+//url encoded
+app.use(express.urlencoded({extended: false}))
+
+
+
 app.get('/', (req, res) => {
     res.sendFile(abspath + "/home.html")
     })
@@ -59,6 +64,8 @@ app.get('/login', (req, res) => {
     })
 
 app.get('/submit', (req, res) => {
+    console.log("User Login Details: ", req.body);
+    
     res.sendFile(abspath + "/submit.html")
     }) 
 
