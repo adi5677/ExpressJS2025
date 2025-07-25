@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Students Details</title>
+</head>
+<body>
+
+    <h1>"Data will be hare"</h1>
+
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Email</td>
+        </tr>
+
+        <tr>
+            <td>Golu</td>
+            <td>20</td>
+            <td>Golu@123</td>
+        </tr>
+
+        <% Students.forEach(function(element){ %>
+        <tr>
+            <td><%= Students.name %></td>
+            <td><%= Students.age %></td>
+            <td><%= Students.email %></td>
+        </tr>
+        <% }) %>    
+
+        <!-- <tr>
+            <td>Adity</td>
+            <td>22</td>
+            <td>adity@123</td>
+        </tr> -->
+        
+    </table>
+    
+</body>
+</html>
