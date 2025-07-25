@@ -6,18 +6,36 @@ const url = "mongodb://localhost:27017"
 
 const client = new MongoClient(url);
 
-async function dbCOnnection() {
+// async function dbCOnnection() {
+
+    // await client.connect()
+    // const db = client.db(dbName);
+    // const collection = db.collection('students')
+
+    // const result = await collection.find().toArray();
+    // console.log(result);
+    
+// }
+
+// dbConnection();
+
+const app = express();
+
+app.set("view engine", "ejs");
+
+app.listen(3200)
+
+app.get("/", async (req, res) => {
 
     await client.connect()
     const db = client.db(dbName);
     const collection = db.collection('students')
 
-    const result = await collection.find().toArray();
-    console.log(result);
-    
-}
+    const students = await collection.find().toArray();
+    console.log(students);
 
-dbCOnnection();
+    // res.send("Data will be hare");
+    res.render('students', {students: students})
+  })
 
-const app = express();
 app.listen(3200);
