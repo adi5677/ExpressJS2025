@@ -1,0 +1,97 @@
+import express from 'express';
+import { MongoClient, ObjectId } from 'mongodb';
+
+
+const dbName = "college"
+const url = "mongodb://localhost:27017"
+const client = new MongoClient(url)
+
+const app = express()
+app.use(express.urlencoded({extended: false}))
+
+app.use(express.json())
+// app.use(express.json())
+app.set("view engine", "ejs")
+client.connect().then((connection) => {
+    const db = connection.db(dbName);
+
+    app.get("/api", async (req, res) => {
+        const collection = db.collection("students");
+        const students = await collection.find().toArray();
+        // res.json(students);
+        // console.log(students);
+        res.send(students)
+    })
+
+    app.get("/ui",async (req, res) => {
+        const collection = db.collection("students");
+        const students = await collection.find().toArray();
+        res.render('students', {students: students})
+    })
+
+    app.get('/add', (req, res) => {
+        res.send(`<form action="add-student" method="post">
+            <input type="text" name="name" placeholder="Enter your name">
+            <br/><br/>
+            <input type="text" name="roll" placeholder="Enter your roll">
+            <br/><br/>
+            <input type="text" name="email" placeholder="Enter your email">
+            <br/><br/>
+            <button>Add Student</button>
+            </form>`)
+    })
+
+    app.post("/add-student", async (req, res) => {
+        // console.log(req.bod  y);
+        
+        const collection = db.collection("students");
+        const result = await collection.insertOne(req.body);
+        res.send("Student added successfully");
+        console.log(result);
+        
+        // const students = await collection.find().toArray();
+        // // res.json(students);
+        // // console.log(students);
+        // res.send("data added ")
+    })
+
+
+    app.post("/add-student-api", async(req, res) => {
+        console.log(req.body);
+        const {name, age, roll, email} = req.body;
+        if(!name || !age || !roll || !email) {
+            res.status(400).send("Please fill all the fields");
+            }
+        else {
+            const collection = db.collection("students");
+            const result = await collection.insertOne({name, age, roll, email});
+            res.send("Student added successfully");
+            console.log(result);
+        }
+
+        const collection = db.collection("students");
+        const result = await collection.insertOne(req.body);
+        res.send({"massage": result})
+        })
+
+        app.delete("/delete/:id", async(req, res) => {
+            const id = req.params.id;
+            const collection = db.collection("students");
+            const result = await collection.deleteOne({_id: new ObjectId(req.params.id)});
+            if(result){
+                res.send({
+                    "massage": "Student deleted successfully",
+                    success:true
+                })
+            }
+            else{
+                res.send({
+                    "massage": "Student not found, Try after some time",
+                    success:false
+                })
+            }
+            console.log(result);
+        })
+    
+})
+app.listen(3200)
