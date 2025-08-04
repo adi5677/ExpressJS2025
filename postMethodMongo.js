@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import express from "express";
-// import studentModel from "./model/studentModel.js";
+import studentModel from "./model/studentModel.js";
 
 
 const app = express();
@@ -28,7 +28,7 @@ app.post('/save', async (req, res) => {
         name: req.body.name,
         age: req.body.age,
         email: req.body.email,
-    });
+    })
 
     await studentData.save();
 
@@ -40,6 +40,18 @@ app.post('/save', async (req, res) => {
         storedInfo: studentData
 
     })
+})
+
+app.put('/update/:id', async (req, res) => {
+    const studentId = req.params.id;
+    const updatedData = await studentModel.findByIdAndUpdate(
+    studentId, {
+        name: req.body.name,
+        age: req.body.age,
+        email: req.body.email,
+    }, { new: true }
+);
+    res.send(updatedData);
 });
 
 app.listen(3200);
