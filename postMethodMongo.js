@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import express from "express";
 import studentModel from "./model/studentModel.js";
 
-
 const app = express();
 
 app.use(express.json());
@@ -32,7 +31,6 @@ app.post('/save', async (req, res) => {
 
     await studentData.save();
 
-    
     res.send({
 
         message: "Data saved successfully",
